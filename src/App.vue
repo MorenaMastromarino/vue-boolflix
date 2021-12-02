@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header/>
-    <Main/>
+    <Main :movies="movies"/>
   </div>
 </template>
 
@@ -14,15 +14,21 @@ import axios from 'axios';
 export default {
   name: 'App',
   components: {
-   Header,
-   Main,
+    Header,
+    Main,
 
+  },
+  data(){
+    return{
+      movies: [],
+    }
   },
   methods: {
     getApi(){
       axios.get('https://api.themoviedb.org/3/search/movie?api_key=4c65b157b05d7ca88b4ecc360dee1a81&language=it-IT&query=ritorno+al+futuro')      
       .then(response => {
-        console.log(response.data.results);
+        this.movies = response.data.results;
+        console.log('movies in app', this.movies);
       })
       .catch(error => {
         console.log(error);

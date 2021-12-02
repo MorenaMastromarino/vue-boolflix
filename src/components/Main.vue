@@ -1,11 +1,11 @@
 <template>
   <main>
 
-    <div class="movie-box">
-       <h3>titolo</h3>
-        <p>titolo originale</p>
-        <p>lingua</p>
-        <p>voto</p>     
+    <div v-for="movie in movies" :key="movie.id" class="movie-card">
+       <h3>{{movie.title}}</h3>
+        <p>{{movie.original_title}}</p>
+        <p>{{movie.original_language}}</p>
+        <p>{{movie.vote_average}}</p>     
     </div>
          
   </main>
@@ -14,7 +14,9 @@
 <script>
 export default {
   name: 'Main',
-
+  props: {
+    movies: Array,
+  }
 }
 </script>
 
