@@ -2,8 +2,12 @@
   <header>
     <h2>boolflix</h2>
     <div>
-      <input type="text">
-      <button>Cerca</button>
+      <input
+        v-model="movieToSearch" 
+        @keyup.enter="searchMovie"
+        type="text"
+      >
+      <button @click="searchMovie">Cerca</button>
     </div>
   </header>
 </template>
@@ -11,7 +15,17 @@
 <script>
 export default {
   name: 'Header',
-
+  data(){
+    return{
+      movieToSearch: '',
+    }
+  },
+  methods: {
+    searchMovie(){
+      this.$emit('sendSearchMovie', this.movieToSearch);
+      this.movieToSearch = '';
+    }
+  }
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header/>
+    <Header @sendSearchMovie="getMovies"/>
     <Main :movies="movies"/>
   </div>
 </template>
@@ -21,11 +21,17 @@ export default {
   data(){
     return{
       movies: [],
+      apiUrl: 'https://api.themoviedb.org/3/search/movie',
+      apiParams: {
+        api_key: '4c65b157b05d7ca88b4ecc360dee1a81',
+        language: 'it-IT',
+        query: '',
+      }
     }
   },
   methods: {
     getApi(){
-      axios.get('https://api.themoviedb.org/3/search/movie?api_key=4c65b157b05d7ca88b4ecc360dee1a81&language=it-IT&query=ritorno+al+futuro')      
+      axios.get(this.apiUrl, {params: this.apiParams})      
       .then(response => {
         this.movies = response.data.results;
         console.log('movies in app', this.movies);
@@ -33,10 +39,12 @@ export default {
       .catch(error => {
         console.log(error);
       })
+    },
+
+    getMovies(movieToSearch){
+      this.apiParams.query = movieToSearch;
+      this.getApi();
     }
-  },
-  mounted(){
-    this.getApi();
   }
 }
 </script>
