@@ -63,6 +63,7 @@ export default {
 
 <style lang="scss">
 @import './assets/style/generals.scss';
+@import "./assets/style/vars.scss";
 
 </style>
 

@@ -6,6 +6,8 @@
       {{item.title || item.name}}
     </p>
 
+    <img :src="`https://image.tmdb.org/t/p/w342${item.poster_path}`" :alt="item.title || item.name">
+
     <p>
       <strong>Titolo originale: </strong>
       {{item.original_title || item.original_name}}
