@@ -23,7 +23,20 @@
 
     <p>
       <strong>Voto: </strong>
-      {{item.vote_average}}
+      
+      <i 
+        v-for="(star, index) in getStars(item)" 
+        :key="'star'+index" 
+        class="fas fa-star">
+      </i>
+
+      <i 
+        v-for="(emptyStar, index) in (5 - getStars(item))" 
+        :key="'emprtyStar'+index" 
+        class="far fa-star">
+      </i>
+
+
     </p>  
 
   </div>
@@ -31,15 +44,22 @@
 
 <script>
 export default {
-name: 'Card',
-props: {
-  item: Object,
-}
+  name: 'Card',
+  props: {
+    item: Object,
+  },
+  methods: {
+    getStars(item){ 
+      return Math.ceil(item.vote_average / 2);
+    }
+  }
 
 }
 </script>
 
 <style lang="scss" scoped>
+@import url('~@fortawesome/fontawesome-free/css/all.min.css');
+
 .card{
   margin: 10px;
 }

@@ -2,7 +2,7 @@
   <main>
 
     <!-- film -->
-    <h2 v-if="movies.lenght > 0">Film</h2>
+    <h2 v-if="movies.length > 0">Film</h2>
     <div class="movies-list">
 
       <Card 
@@ -14,7 +14,7 @@
     </div>
 
     <!-- serie -->
-    <h2 v-if="series.lenght > 0">Serie TV</h2>
+    <h2 v-if="series.length > 0">Serie TV</h2>
     <div class="movies-list">
 
       <Card 
