@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header @sendSearchMovie="getMovies"/>
-    <Main :movies="movies"/>
+    <Main :movies="movies" :series="series"/>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
     return{
       movies: [],
       series: [],
-      apiUrl: 'https://api.themoviedb.org/3/search/movie',
+      apiUrl: 'https://api.themoviedb.org/3/search/',
       apiParams: {
         api_key: '4c65b157b05d7ca88b4ecc360dee1a81',
         language: 'it-IT',
@@ -32,14 +32,25 @@ export default {
   },
   methods: {
     getApi(){
-      axios.get(this.apiUrl, {params: this.apiParams})      
+
+      // chiamata film
+      axios.get(this.apiUrl+'movie', {params: this.apiParams})      
       .then(response => {
-        this.movies = response.data.results;
-        console.log('movies in app', this.movies);
+        this.movies = response.data.results;        
       })
       .catch(error => {
         console.log(error);
       })
+
+      // chiamata serie
+      axios.get(this.apiUrl+'tv', {params: this.apiParams})      
+      .then(response => {
+        this.series = response.data.results;
+      })
+      .catch(error => {
+        console.log(error);
+      })
+
     },
 
     getMovies(movieToSearch){

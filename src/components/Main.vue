@@ -1,16 +1,30 @@
 <template>
   <main>
-    <h2>Film</h2>
+
+    <!-- film -->
+    <h2 v-if="movies.lenght > 0">Film</h2>
     <div class="movies-list">
 
       <Card 
         v-for="movie in movies"
         :key="movie.id" 
-        :movie="movie"
+        :item="movie"
       />
 
     </div>
-    
+
+    <!-- serie -->
+    <h2 v-if="series.lenght > 0">Serie TV</h2>
+    <div class="movies-list">
+
+      <Card 
+        v-for="serie in series"
+        :key="serie.id" 
+        :item="serie"
+      />
+
+    </div>
+
          
   </main>
 </template>
@@ -22,6 +36,7 @@ export default {
   name: 'Main',
   props: {
     movies: Array,
+    series: Array,
   },
   components: {
     Card,
