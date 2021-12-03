@@ -21,6 +21,7 @@ export default {
   data(){
     return{
       movies: [],
+      series: [],
       apiUrl: 'https://api.themoviedb.org/3/search/movie',
       apiParams: {
         api_key: '4c65b157b05d7ca88b4ecc360dee1a81',
